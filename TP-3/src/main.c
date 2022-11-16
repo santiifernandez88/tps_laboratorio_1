@@ -17,6 +17,8 @@ int main()
     convocar = 0;
     flag = 0;
 
+
+    printf("Antes de usar nuestro programa, le pedimos que cargue los archivos para poder utilizar las funciones que usted desee.\n");
     do
     {
     	option = menuPrincipal();
@@ -92,7 +94,7 @@ int main()
 				if(flag == 1)
 				{
 					controller_guardarJugadoresModoTexto("jugadores.csv" , listaJugadores);
-					controller_cargarSeleccionesDesdeTexto("selecciones.csv" , listaSelecciones);
+					controller_guardarSeleccionesModoTexto("selecciones.csv" , listaSelecciones);
 				}
 				break;
 			case 11:

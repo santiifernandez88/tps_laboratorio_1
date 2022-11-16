@@ -205,6 +205,8 @@ int jug_getIdSeleccion(Jugador* this,int* idSeleccion)
 int jugador_CompareByEdad(void* jugadorUno, void* jugadorDos)
 {
 	int retorno = 0;
+	int edadUnJugador;
+	int edadOtroJugador;
 
 	Jugador* unJugador;
 	Jugador* otroJugador;
@@ -212,9 +214,15 @@ int jugador_CompareByEdad(void* jugadorUno, void* jugadorDos)
 	unJugador = (Jugador*) jugadorUno;
 	otroJugador = (Jugador*) jugadorDos;
 
-	if((unJugador != NULL && otroJugador != NULL) && (unJugador->edad > otroJugador->edad))
+	if(unJugador != NULL && otroJugador != NULL)
 	{
-		retorno = 1;
+		jug_getEdad(unJugador, &edadUnJugador);
+		jug_getEdad(otroJugador, &edadOtroJugador);
+
+		if(edadUnJugador < edadOtroJugador)
+		{
+			retorno = 1;
+		}
 	}
 
 
@@ -235,11 +243,10 @@ int jugador_CompareByNacionalidad(void* jugadorUno, void* jugadorDos)
 
 	if(unJugador!= NULL && otroJugador != NULL)
 	{
-		jug_getNombreCompleto(unJugador, nacionalidadUnJugador);
-		jug_getNombreCompleto(otroJugador, nacionalidadOtroJugador);
+		jug_getNacionalidad(unJugador, nacionalidadUnJugador);
+		jug_getNacionalidad(otroJugador, nacionalidadOtroJugador);
 		compara = strcmp(nacionalidadUnJugador, nacionalidadOtroJugador);
 	}
-
 
 	return compara;
 }
@@ -264,10 +271,40 @@ int jugador_CompareByNombre(void* jugadorUno, void* jugadorDos)
 		compara = strcmp(nombreUnJugador, nombreOtroJugador);
 	}
 
-
 	return compara;
 }
 
+void mostrarUnJugadorConPais(Jugador* pJugador, Seleccion* pSeleccion)
+{
+	int id;
+	char nombre[100];
+	int edad;
+	char posicion[100];
+	char nacionalidad[100];
+	int idSeleccion;
+	char pais[100];
+	int idSelec;
+
+	if(pJugador != NULL && pSeleccion != NULL)
+	{
+		jug_getId(pJugador, &id);
+		jug_getNombreCompleto(pJugador, nombre);
+		jug_getEdad(pJugador, &edad);
+		jug_getPosicion(pJugador, posicion);
+		jug_getNacionalidad(pJugador, nacionalidad);
+		jug_getIdSeleccion(pJugador, &idSeleccion);
+		selec_getPais(pSeleccion, pais);
+		selec_getId(pSeleccion, &idSelec);
+		if(idSeleccion == idSelec)
+		{
+			printf("%4d %25s %10d %25s %25s %25s \n", id,nombre,edad,posicion,nacionalidad,pais);
+		}
+		else
+		{
+			jug_printOne(pJugador);
+		}
+	}
+}
 
 void jug_printOne(Jugador* unJugador)
 {
@@ -287,28 +324,41 @@ void jug_printOne(Jugador* unJugador)
 		jug_getNacionalidad(unJugador, nacionalidad);
 		jug_getIdSeleccion(unJugador, &idSeleccion);
 
-		if(idSeleccion == 0)
-		{
-			printf("%4d %25s %10d %25s %25s %25s \n", id, nombre, edad, posicion, nacionalidad, "NO CONVOCADO");
-		}
-		else
-		{
-			printf("%4d %25s %10d %25s %25s %4d \n", id, nombre, edad, posicion, nacionalidad, idSeleccion);
-		}
+		printf("%4d %25s %10d %25s %25s %25s \n", id, nombre, edad, posicion, nacionalidad, "NO CONVOCADO");
 
 	}
 }
 
-void mostrarTodosLosJugadores(LinkedList* pArrayListJugador)
+void mostrarJugadoresSinIdSeleccion(LinkedList* pArrayListJugador)
 {
 	Jugador* pJugador;
 
 	for(int i= 0; i<ll_len(pArrayListJugador); i++)
 	{
 		pJugador = (Jugador*)ll_get(pArrayListJugador,i);
-		jug_printOne(pJugador);
+		mostrarJugadorSinIdSeleccion(pJugador);
 	}
 
+}
+
+void mostrarJugadorSinIdSeleccion(Jugador* unJugador)
+{
+	int id;
+	char nombre[100];
+	int edad;
+	char posicion[100];
+	char nacionalidad[100];
+
+	if(unJugador != NULL)
+	{
+		jug_getId(unJugador, &id);
+		jug_getNombreCompleto(unJugador, nombre);
+		jug_getEdad(unJugador, &edad);
+		jug_getPosicion(unJugador, posicion);
+		jug_getNacionalidad(unJugador, nacionalidad);
+
+		printf("%4d %25s %10d %25s %25s \n", id, nombre, edad, posicion, nacionalidad);
+	}
 }
 
 int buscarIdJugador(LinkedList* pArrayListJugador, char* mensaje)
@@ -336,38 +386,10 @@ int buscarIdJugador(LinkedList* pArrayListJugador, char* mensaje)
 	return idAux;
 }
 
-void listarJugadoresConvocados(LinkedList* pArrayListJugador)
-{
-	Jugador* pJugador;
-	int idSeleccion;
-
-	printf("Los jugadores convocados son: \n");
-	for(int i=0;i<ll_len(pArrayListJugador);i++)
-	{
-		pJugador = (Jugador*)ll_get(pArrayListJugador,i);
-		if(pJugador != NULL)
-		{
-			jug_getIdSeleccion(pJugador, &idSeleccion);
-			if(idSeleccion > 0)
-			{
-
-				jug_printOne(pJugador);
-			}
-			else
-			{
-				printf("No hay jugadores convocados.\n");
-				break;
-			}
-		}
-	}
-}
-
 void mostrarJugadoresNoConvocados(LinkedList* pArrayListJugador)
 {
 	Jugador* pJugador;
 	int idSeleccion;
-
-	printf("Los jugadores no convocados son: \n");
 
 	for(int i=0;i<ll_len(pArrayListJugador);i++)
 	{
@@ -382,24 +404,3 @@ void mostrarJugadoresNoConvocados(LinkedList* pArrayListJugador)
 		}
 	}
 }
-
-
-/*Jugador* altaJugador()
-{
-	Jugador* miJugador;
-
-	miJugador = jug_new();
-
-	char nombre[100];
-	char posicion[100];
-	char nacionalidad[100];
-	int edad;
-
-
-	getOnlyString("Ingrese el nombre del jugador: \n","Error reingrese el nombre: \n", 10, 100, nombre);
-	edad = inputs_getNumberInt("Ingrese la edad del jugador: \n", "Error, reingrese la edad del jugador: \n", 16, 45);
-	getOnlyString("Ingrese la posicion del jugador: \n","Error reingrese la posicion: \n", 10, 100, posicion);
-	getOnlyString("Ingrese la nacionalidad del jugador: \n","Error reingrese la nacionalidad: \n", 10, 100, nacionalidad);
-
-	return miJugador;
-}*/

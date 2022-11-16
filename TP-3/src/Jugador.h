@@ -44,17 +44,59 @@ int jug_setIdSeleccion(Jugador* this,int idSeleccion);
 int jug_getIdSeleccion(Jugador* this,int* idSeleccion);
 
 //Funciones Agregadas
-
+/// @fn void jug_printOne(Jugador*)
+/// @brief muestra un jugador sin convocar
+///
+/// @param unJugador
 void jug_printOne(Jugador* unJugador);
-void mostrarTodosLosJugadores(LinkedList* pArrayListJugador);
-
+/// @fn void mostrarUnJugadorConPais(Jugador*, Seleccion*)
+/// @brief muestra un jugador convocado
+///
+/// @param pJugador
+/// @param pSeleccion
+void mostrarUnJugadorConPais(Jugador* pJugador, Seleccion* pSeleccion);
+/// @fn void mostrarJugadoresSinIdSeleccion(LinkedList*)
+/// @brief muestra la lista pero sin el campo de la id de la seleccion
+///
+/// @param pArrayListJugador
+void mostrarJugadoresSinIdSeleccion(LinkedList* pArrayListJugador);
+/// @fn void mostrarJugadorSinIdSeleccion(Jugador*)
+/// @brief muestra un jugador sin el campo de la id de la seleccion
+///
+/// @param unJugador
+void mostrarJugadorSinIdSeleccion(Jugador* unJugador);
+/// @fn int jugador_CompareByNombre(void*, void*)
+/// @brief compara por nombre
+///
+/// @param jugadorUno
+/// @param jugadorDos
+/// @return int
 int jugador_CompareByNombre(void* jugadorUno, void* jugadorDos);
+/// @fn int jugador_CompareByEdad(void*, void*)
+/// @brief compara por edad
+///
+/// @param jugadorUno
+/// @param jugadorDos
+/// @return int
 int jugador_CompareByEdad(void* jugadorUno, void* jugadorDos);
+/// @fn int jugador_CompareByNacionalidad(void*, void*)
+/// @brief  compara por nacionalidad
+///
+/// @param jugadorUno
+/// @param jugadorDos
+/// @return int
 int jugador_CompareByNacionalidad(void* jugadorUno, void* jugadorDos);
-
+/// @fn int buscarIdJugador(LinkedList*, char*)
+/// @brief  busca el id de un jugador
+///
+/// @param pArrayListJugador
+/// @param mensaje
+/// @return el id encontrado
 int buscarIdJugador(LinkedList* pArrayListJugador, char* mensaje);
-
-void listarJugadoresConvocados(LinkedList* pArrayListJugador);
+/// @fn void mostrarJugadoresNoConvocados(LinkedList*)
+/// @brief  muestra la lista de jugadores no convocados
+///
+/// @param pArrayListJugador
 void mostrarJugadoresNoConvocados(LinkedList* pArrayListJugador);
 
 #endif // jug_H_INCLUDED

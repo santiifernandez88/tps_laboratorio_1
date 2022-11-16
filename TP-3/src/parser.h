@@ -17,6 +17,7 @@ int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedLi
 int parser_JugadorToText(FILE* pFile, LinkedList* pArrayListJugador);
 int parser_SeleccionToText(FILE* pFile, LinkedList* pArrayListSeleccion);
 int parser_idFromText(FILE* pFile, char* id);
+int parser_idToText(FILE* pFile, char* id);
 
 
 #endif /* PARSER_H_ */

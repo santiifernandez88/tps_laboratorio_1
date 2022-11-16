@@ -25,3 +25,4 @@ void controller_listados(LinkedList* pArrayListSeleccion, LinkedList* pArrayList
 int controller_convocarJugadores(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_listarJugadoresConvocados(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_cargarIdJugadorModoTexto(char* path, char* id);
+int controller_guardarIdJugadorModoTexto(char* path, char* id);

@@ -127,7 +127,6 @@ int parser_SeleccionFromText(FILE* pFile , LinkedList* pArrayListSeleccion)
 
 int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion)
 {
-
 	int retorno = 1;
 	Jugador* pJugador;
 	Seleccion* pSeleccion;
@@ -144,6 +143,7 @@ int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedLi
 
 	if(pArrayListJugador != NULL)
 	{
+		rewind(pFile);
 		for(int i = 0; i < ll_len(auxListaSelecciones); i++)
 		{
 			pSeleccion = (Seleccion*)ll_get(auxListaSelecciones, i);
@@ -155,8 +155,9 @@ int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedLi
 				{
 					pJugador = (Jugador*)ll_get(auxListaJugadores, j);
 					jug_getIdSeleccion(pJugador, &idSelecciones);
-					if(pJugador != NULL && pFile != NULL && idSelecciones == idSelec)
+					if(pFile != NULL && idSelecciones == idSelec)
 					{
+						printf("Los jugadores que se va a agregar son: \n");
 						controller_listarJugadoresConvocados(auxListaJugadores, auxListaSelecciones);
 						fwrite(pJugador, sizeof(Jugador), 1, pFile);
 						retorno = 0;
@@ -166,7 +167,6 @@ int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedLi
 			}
 		}
 	}
-
 	return retorno;
 }
 
@@ -184,6 +184,7 @@ int parser_JugadorToText(FILE* pFile, LinkedList* pArrayListJugador)
 
 	if(pArrayListJugador != NULL)
 	{
+		rewind(pFile);
 		cantidad = ll_len(pArrayListJugador);
 
 		for(int i = 0; i < cantidad; i++)
@@ -198,7 +199,7 @@ int parser_JugadorToText(FILE* pFile, LinkedList* pArrayListJugador)
 				jug_getNacionalidad(pJugador, nacionalidad);
 				jug_getIdSeleccion(pJugador, &idSeleccion);
 
-				fprintf(pFile, "%d,%s,%d,%s,%s,%d", id, nombre, edad,posicion,nacionalidad,idSeleccion);
+				fprintf(pFile, "%d,%s,%d,%s,%s,%d\n", id,nombre,edad,posicion,nacionalidad,idSeleccion);
 				retorno = 0;
 			}
 		}
@@ -231,7 +232,7 @@ int parser_SeleccionToText(FILE* pFile, LinkedList* pArrayListSeleccion)
 				selec_getConfederacion(pSeleccion, nacionalidad);
 				selec_getConvocados(pSeleccion, &idSeleccion);
 
-				fprintf(pFile, "%d,%s,%s,%d", id, nombre,nacionalidad,idSeleccion);
+				fprintf(pFile, "%d,%s,%s,%d", id,nombre,nacionalidad,idSeleccion);
 				retorno = 0;
 			}
 		}
@@ -250,6 +251,20 @@ int parser_idFromText(FILE* pFile, char* id)
 	}while(!feof(pFile));
 
 	fclose(pFile);
+	return retorno;
+}
+
+int parser_idToText(FILE* pFile, char* id)
+{
+	int retorno = 0;
+
+	if(pFile != NULL)
+	{
+		rewind(pFile);
+		fprintf(pFile,"%s", id);
+		retorno = 1;
+	}
+
 	return retorno;
 }
 

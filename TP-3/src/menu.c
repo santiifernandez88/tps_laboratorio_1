@@ -9,7 +9,7 @@ int menuInformes()
 	opcion = inputs_getNumberInt("Ingrese la opcion del listado que desea ver: \n"
 			  "1) Todos los jugadores.\n"
 			  "2) Todas las selecciones.\n"
-			  "3) Los jugadore convocados.\n", "Error, reingrese una opcion: \n", 1, 3);
+			  "3) Los jugadores convocados.\n", "Error, reingrese una opcion: \n", 1, 4);
 
 	return opcion;
 }
@@ -18,8 +18,7 @@ int menuPrincipal()
 {
 	int opcion;
 
-	opcion = inputs_getNumberInt(" \t\t---------------- MENU PRINCIPAL ----------------\t\t\n\n\n"
-								"Antes de empezar a utilizar nuestro programa le recomiendo cargar los archivos antes de empezar a usar sus diversas utilidades.\n"
+	opcion = inputs_getNumberInt("\n\n \t\t---------------- MENU PRINCIPAL ----------------\t\t\n\n\n"
 								"1) CARGAR ARCHIVOS.\n"
 								"2) ALTA DE JUGADOR.\n"
 								"3) MODFICAR JUGADOR.\n"
