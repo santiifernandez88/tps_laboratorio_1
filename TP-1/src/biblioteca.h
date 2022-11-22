@@ -45,4 +45,11 @@ float promediarConfederaciones(int confederacion, int jugadores);
 /// @return el valor del aumento al mantenimiento
 int AumentarMantenimiento(int contadorEuropa, int contadorSudAmerica, int contadorNorAmerica, int contadorAfrica, int contadorOceania, int contadorAsia, int mantenimiento);
 
-
+/// @fn int SumarCostos(int, int, int)
+/// @brief
+///
+/// @param costoUno
+/// @param costoDos
+/// @param costoTres
+/// @return La suma de los tres gastos
+int SumarCostos(int costoUno, int costoDos, int costoTres);

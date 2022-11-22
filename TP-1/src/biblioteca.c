@@ -1,6 +1,7 @@
+#include "biblioteca.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "jugadores.h"
 
 
 int validarPosiciones(int* jugador, int max, char* mensaje)
@@ -49,11 +50,21 @@ int MenuPosiciones(int posicion, int* contadorArqueros, int* contadorDefensor, i
 	return bandera;
 }
 
+int SumarCostos(int costoUno, int costoDos, int costoTres)
+{
+	int mantenimiento;
+
+	mantenimiento = 0;
+
+	mantenimiento = costoUno + costoDos + costoTres;
+
+	return mantenimiento;
+}
 
 int AumentarMantenimiento(int contadorEuropa, int contadorSudAmerica, int contadorNorAmerica, int contadorAfrica, int contadorOceania, int contadorAsia, int mantenimiento)
 {
 	int aumento;
-
+	aumento  = mantenimiento;
 
 	if(contadorEuropa > contadorSudAmerica && contadorEuropa > contadorAfrica && contadorEuropa > contadorOceania && contadorEuropa > contadorAsia && contadorEuropa > contadorNorAmerica)
 	{

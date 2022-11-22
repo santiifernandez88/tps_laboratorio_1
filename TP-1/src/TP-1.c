@@ -11,10 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "inputs.h"
-#include "costos.h"
-#include "jugadores.h"
 
+#include "biblioteca.h"
+#include "inputs.h"
 
 int main(void) {
 	setbuf(stdout,NULL);
@@ -110,22 +109,23 @@ int main(void) {
 				"Delanteros -> %d\n"
 				"\n3. Calcular todo\n"
 				"4. Mostrar resultados\n", hospedaje, comida, transporte, arqueros, defensores, mediocampistas, delanteros);
-		opcion = getInt("\nElija la opcion a la que desea ingresar: ");
+		validarEntero("Que opcion desea ingresar: \n", "Reingrese la opcion: \n", 1, 5, 5, &opcion);
 
 	switch(opcion)
 	{
 		case 1:
-			opcionSubMenu = getInt("Que costo quiere ingresar: \n1. Hospedaje\n2. Comida\n3. Transporte\n");
+
+			validarEntero("Que costo quiere ingresar: \n1. Hospedaje\n2. Comida\n3. Transporte\n", "Reingrese la opcion: \n1. Hospedaje\n2. Comida\n3. Transporte \n", 1, 3, 5, &opcionSubMenu);
 			switch(opcionSubMenu)
 			{
 				case 1:
-					hospedaje = ingresarCostoHospedaje();
+					validarEntero("Ingrese el costo de la hospedaje: \n", "Reingrese el costo de la hospedaje: \n", 0, 1000000, 5, &hospedaje);
 					break;
 				case 2:
-					comida = ingresarCostoComida();
+					validarEntero("Ingrese el costo de la comida: \n", "Reingrese el costo de la comida: \n", 0, 1000000, 5, &comida);
 					break;
 				case 3:
-					transporte = ingresarCostoTransporte();
+					validarEntero("Ingrese el costo del transporte: \n", "Reingrese el costo del transporte: \n", 0, 1000000, 5, &transporte);
 					break;
 				default:
 					printf("ERROR!! eliga el costo que quiere ingresar con las opciones que se muestan\n");
@@ -133,15 +133,16 @@ int main(void) {
 			}break;
 		case 2:
 
-			camisetas = getInt("Ingrese la camiseta que desea usar: ");
+			validarEntero("Ingrese el numero de la camiseta del jugador: \n", "Reingrese el numero de la camiseta del jugador: \n", 0, 100, 5, &camisetas);
 			printf("La camiseta que usted eligio es: %d\n", camisetas);
 
-			posicion = getInt("Ingrese la posicion en la que juega '1'(Arquero), '2'(Defensor), '3'(Mediocampistas) y '4'(Delantero): ");
+			validarEntero("Ingrese la posicion en la que juega '1'(Arquero), '2'(Defensor), '3'(Mediocampistas) y '4'(Delantero): \n", "Reingrese la posicion en la que juega '1'(Arquero), '2'(Defensor), '3'(Mediocampistas) y '4'(Delantero): \n", 1, 4, 5, &posicion);
 			bandera = MenuPosiciones(posicion, &arqueros, &defensores, &mediocampistas, &delanteros);
 
 			if(bandera == 1)
 			{
-				confederaciones = getInt("Ingrese la confederacion a la que pertenece: \n 1. UEFA\n 2. Conmebol\n 3. Concacaf\n 4. AFC\n 5. CAF\n 6. OFC\n");
+
+				validarEntero("Ingrese la confederacion a la que pertenece: \n 1. UEFA\n 2. Conmebol\n 3. Concacaf\n 4. AFC\n 5. CAF\n 6. OFC\n", "Reingrese la confederacion a la que pertenece: \n 1. UEFA\n 2. Conmebol\n 3. Concacaf\n 4. AFC\n 5. CAF\n 6. OFC\n", 1, 6, 5, &confederaciones);
 				switch(confederaciones)
 				{
 				case 1:
