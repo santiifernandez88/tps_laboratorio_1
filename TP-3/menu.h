@@ -8,6 +8,5 @@
 
 int menuInformes();
 int menuPrincipal();
-int menuPorDefecto(char* mensaje, char* mensajeError, int minimo, int maximo);
 
 #endif /* MENU_H_ */

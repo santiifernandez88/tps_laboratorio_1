@@ -12,6 +12,7 @@ int main()
     int option = 0;
     LinkedList* listaJugadores = ll_newLinkedList();
     LinkedList* listaSelecciones = ll_newLinkedList();
+    LinkedList* listaJugadoresAux = ll_newLinkedList();
     int flag;
     int convocar;
     convocar = 0;
@@ -40,27 +41,27 @@ int main()
 				}
 				break;
 			case 3:
-				if(flag == 1)
+				if(flag == 1 && ll_isEmpty(listaJugadores) == 0)
 				{
 					controller_editarJugador(listaJugadores);
 				}
 				break;
 			case 4:
-				if(flag == 1)
+				if(flag == 1 && ll_isEmpty(listaJugadores) == 0)
 				{
 					controller_removerJugador(listaJugadores, listaSelecciones);
 				}
 				break;
 			case 5:
-				if(flag == 1)
+				if(flag == 1 && ll_isEmpty(listaJugadores) == 0)
 				{
 					controller_listados(listaSelecciones, listaJugadores);
 				}
 				break;
 			case 6:
-				if(flag == 1)
+				if(flag == 1 && ll_isEmpty(listaJugadores) == 0)
 				{
-					convocar = menuPorDefecto("1.Convocar jugadores\n2.Desafectar de la seleccion\n", "Error elija una opcion valida.\n", 1,2);
+					validarEntero("1.Convocar jugadores\n2.Desafectar de la seleccion\n", "Error elija una opcion valida.\n", 1,2, 5, &convocar);
 					switch(convocar)
 					{
 					case 1:
@@ -73,7 +74,7 @@ int main()
 				}
 				break;
 			case 7:
-				if(flag == 1)
+				if(flag == 1 && ll_isEmpty(listaJugadores) == 0)
 				{
 					controller_ordenarJugadores(listaJugadores, listaSelecciones);
 				}
@@ -87,14 +88,14 @@ int main()
 			case 9:
 				if(flag == 1)
 				{
-					controller_cargarJugadoresDesdeBinario("jugadoresConvocados.bin" , listaJugadores);
+					controller_cargarJugadoresDesdeBinario("jugadoresConvocados.bin" , listaJugadoresAux);
+					controller_listarJugadores(listaJugadoresAux, listaSelecciones);
 				}
 				break;
 			case 10:
-				if(flag == 1)
+				if(flag == 1 && controller_guardarJugadoresModoTexto("jugadores.csv" , listaJugadores) == 0 && controller_guardarSeleccionesModoTexto("selecciones.csv" , listaSelecciones) == 0)
 				{
-					controller_guardarJugadoresModoTexto("jugadores.csv" , listaJugadores);
-					controller_guardarSeleccionesModoTexto("selecciones.csv" , listaSelecciones);
+					printf("Se guardaron los archivos correctamente.\n");
 				}
 				break;
 			case 11:

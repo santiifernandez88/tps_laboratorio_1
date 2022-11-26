@@ -6,10 +6,10 @@ int menuInformes()
 {
 	int opcion;
 
-	opcion = inputs_getNumberInt("Ingrese la opcion del listado que desea ver: \n"
+	validarEntero("Ingrese la opcion del listado que desea ver: \n"
 			  "1) Todos los jugadores.\n"
 			  "2) Todas las selecciones.\n"
-			  "3) Los jugadores convocados.\n", "Error, reingrese una opcion: \n", 1, 4);
+			  "3) Los jugadores convocados.\n", "Error, reingrese una opcion: \n", 1, 4, 5, &opcion);
 
 	return opcion;
 }
@@ -18,7 +18,7 @@ int menuPrincipal()
 {
 	int opcion;
 
-	opcion = inputs_getNumberInt("\n\n \t\t---------------- MENU PRINCIPAL ----------------\t\t\n\n\n"
+	validarEntero("\n\n \t\t---------------- MENU PRINCIPAL ----------------\t\t\n\n\n"
 								"1) CARGAR ARCHIVOS.\n"
 								"2) ALTA DE JUGADOR.\n"
 								"3) MODFICAR JUGADOR.\n"
@@ -30,16 +30,7 @@ int menuPrincipal()
 								"9) CARGAR ARCHIVO BINARIO.\n"
 								"10) GUARDAR ARCHIVOS .CSV.\n"
 								"11) SALIR.\n"
-								"Elija la opcion del menu a la que quiera ingresar: \n", "Error, reingrese la opcion valida.\n", 1, 11);
-
-	return opcion;
-}
-
-int menuPorDefecto(char* mensaje, char* mensajeError, int minimo, int maximo)
-{
-	int opcion;
-
-	opcion = inputs_getNumberInt(mensaje, mensajeError, minimo, maximo);
+								"Elija la opcion del menu a la que quiera ingresar: \n", "Error, reingrese la opcion valida.\n", 1, 11, 5, &opcion);
 
 	return opcion;
 }

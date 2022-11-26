@@ -223,6 +223,10 @@ int jugador_CompareByEdad(void* jugadorUno, void* jugadorDos)
 		{
 			retorno = 1;
 		}
+		else
+		{
+			retorno = -1;
+		}
 	}
 
 
@@ -231,7 +235,7 @@ int jugador_CompareByEdad(void* jugadorUno, void* jugadorDos)
 
 int jugador_CompareByNacionalidad(void* jugadorUno, void* jugadorDos)
 {
-	int compara;
+	int compara = -1;
 	char nacionalidadUnJugador[100];
 	char nacionalidadOtroJugador[100];
 
@@ -254,7 +258,7 @@ int jugador_CompareByNacionalidad(void* jugadorUno, void* jugadorDos)
 
 int jugador_CompareByNombre(void* jugadorUno, void* jugadorDos)
 {
-	int compara;
+	int compara = -1;
 	char nombreUnJugador[100];
 	char nombreOtroJugador[100];
 
@@ -329,18 +333,6 @@ void jug_printOne(Jugador* unJugador)
 	}
 }
 
-void mostrarJugadoresSinIdSeleccion(LinkedList* pArrayListJugador)
-{
-	Jugador* pJugador;
-
-	for(int i= 0; i<ll_len(pArrayListJugador); i++)
-	{
-		pJugador = (Jugador*)ll_get(pArrayListJugador,i);
-		mostrarJugadorSinIdSeleccion(pJugador);
-	}
-
-}
-
 void mostrarJugadorSinIdSeleccion(Jugador* unJugador)
 {
 	int id;
@@ -361,46 +353,4 @@ void mostrarJugadorSinIdSeleccion(Jugador* unJugador)
 	}
 }
 
-int buscarIdJugador(LinkedList* pArrayListJugador, char* mensaje)
-{
-	Jugador* pJugador;
-	int idAux;
-	int id;
 
-	idAux = inputs_getNumberInt(mensaje, "Error, vuelva a ingresar un id valido.\n", 1, 500);
-
-	for(int i=0;i<ll_len(pArrayListJugador);i++)
-	{
-		pJugador = ll_get(pArrayListJugador,i);
-		if(pJugador != NULL)
-		{
-			jug_getId(pJugador, &id);
-			if(id == idAux)
-			{
-				printf("El jugador que usted ingreso es: \n");
-				jug_printOne(pJugador);
-			}
-		}
-	}
-
-	return idAux;
-}
-
-void mostrarJugadoresNoConvocados(LinkedList* pArrayListJugador)
-{
-	Jugador* pJugador;
-	int idSeleccion;
-
-	for(int i=0;i<ll_len(pArrayListJugador);i++)
-	{
-		pJugador = ll_get(pArrayListJugador,i);
-		if(pJugador != NULL)
-		{
-			jug_getIdSeleccion(pJugador, &idSeleccion);
-			if(idSeleccion == 0)
-			{
-				jug_printOne(pJugador);
-			}
-		}
-	}
-}

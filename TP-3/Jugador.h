@@ -55,11 +55,6 @@ void jug_printOne(Jugador* unJugador);
 /// @param pJugador
 /// @param pSeleccion
 void mostrarUnJugadorConPais(Jugador* pJugador, Seleccion* pSeleccion);
-/// @fn void mostrarJugadoresSinIdSeleccion(LinkedList*)
-/// @brief muestra la lista pero sin el campo de la id de la seleccion
-///
-/// @param pArrayListJugador
-void mostrarJugadoresSinIdSeleccion(LinkedList* pArrayListJugador);
 /// @fn void mostrarJugadorSinIdSeleccion(Jugador*)
 /// @brief muestra un jugador sin el campo de la id de la seleccion
 ///
@@ -86,17 +81,5 @@ int jugador_CompareByEdad(void* jugadorUno, void* jugadorDos);
 /// @param jugadorDos
 /// @return int
 int jugador_CompareByNacionalidad(void* jugadorUno, void* jugadorDos);
-/// @fn int buscarIdJugador(LinkedList*, char*)
-/// @brief  busca el id de un jugador
-///
-/// @param pArrayListJugador
-/// @param mensaje
-/// @return el id encontrado
-int buscarIdJugador(LinkedList* pArrayListJugador, char* mensaje);
-/// @fn void mostrarJugadoresNoConvocados(LinkedList*)
-/// @brief  muestra la lista de jugadores no convocados
-///
-/// @param pArrayListJugador
-void mostrarJugadoresNoConvocados(LinkedList* pArrayListJugador);
 
 #endif // jug_H_INCLUDED

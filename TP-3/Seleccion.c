@@ -145,7 +145,7 @@ int buscarIdSeleccion(LinkedList* pArrayListSeleccion)
 	int idAux;
 	int id;
 
-	idAux = inputs_getNumberInt("Ingrese el id de la seleccion: \n", "Error, vuelva a ingresar un id valido.\n", 1, 500);
+	validarEntero("Ingrese el id de la seleccion: \n", "Error, vuelva a ingresar un id valido.\n", 1, 500, 5, &idAux);
 
 	for(int i=0;i<ll_len(pArrayListSeleccion);i++)
 	{

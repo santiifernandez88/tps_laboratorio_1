@@ -19,10 +19,13 @@ int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJu
 int controller_cargarSeleccionesDesdeTexto(char* path , LinkedList* pArrayListSeleccion);
 int controller_editarSeleccion(LinkedList* pArrayListSeleccion, LinkedList* pArrayListJugador);
 int controller_listarSelecciones(LinkedList* pArrayListSeleccion);
-int controller_ordenarSelecciones(LinkedList* pArrayListSeleccion);
+int controller_ordenarSelecciones(LinkedList* pArrayListSeleccion, int orden);
 int controller_guardarSeleccionesModoTexto(char* path , LinkedList* pArrayListSeleccion);
 void controller_listados(LinkedList* pArrayListSeleccion, LinkedList* pArrayListJugador);
 int controller_convocarJugadores(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_listarJugadoresConvocados(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_cargarIdJugadorModoTexto(char* path, char* id);
 int controller_guardarIdJugadorModoTexto(char* path, char* id);
+int buscarIdJugador(LinkedList* pArrayListJugador, char* mensaje);
+void mostrarJugadoresNoConvocados(LinkedList* pArrayListJugador);
+void mostrarJugadoresSinIdSeleccion(LinkedList* pArrayListJugador);
